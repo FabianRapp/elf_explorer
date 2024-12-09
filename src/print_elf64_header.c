@@ -722,9 +722,13 @@ void	print64_e_falgs(Elf64_Ehdr *header) {
 	//todo: print flag strings specific for header->e_machine
 }
 
-void print64(Elf64_Ehdr *header) {
-	printf("*************************************\n");
-	printf("Elf64_Ehdr located at pointer %p:\n", header);
+bool	print_Elf64_Ehdr(t_elf_parser *data, char *input, va_list args) {
+	(void)args;
+	if (strcmp(input, "main header")) {
+		return (false);
+	}
+	Elf64_Ehdr	*header = data->main_header;
+	printf(FT_ANSI_GREEN FT_ANSI_ITALIC "Elf64_Ehdr:\n" FT_ANSI_RESET);
 	print64_e_ident(header);
 	print64_type(header);
 	print64_emachine(header);
@@ -749,4 +753,5 @@ void print64(Elf64_Ehdr *header) {
 	printf("e_shnum: %d (Section header table entry count)\n", header->e_shnum);
 	printf("e_shstrndx: %d (Index of the section header string table)\n",
 		header->e_shstrndx);
+	return (true);
 }
