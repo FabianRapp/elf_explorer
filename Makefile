@@ -1,9 +1,10 @@
 NAME := elf_parser
 CC := cc
-CFLAGS_DEBUG := -Wall -Wextra -DFSAN -fsanitize=address -g -O0
+CFLAGS_DEBUG := -Wall -Wextra -DFSAN -fsanitize=address -g -O0 -lreadline
 CFLAGS := $(CFLAGS_DEBUG)
 #-Werror
 #-O3
+LD_FLAGS :=
 LIBFT_DIR = libft/
 LIBFT 	=	$(LIBFT_DIR)libft.a
 INCLUDES=	-I./include \
@@ -20,7 +21,9 @@ SRC_TEST_MAIN := main.c
 
 SOURCE_FILES := \
 	main.c \
+	utils.c \
 	print_elf64_header.c \
+	print_elf64_section_header.c \
 
 SOURCES = $(SOURCE_FILES:%=$(SRC_DIR)%)
 
@@ -46,7 +49,7 @@ CLEAR	=	\033[0m
 all: $(NAME)
 
 $(NAME): $(OBJECTS) $(LIBFT)
-	@$(CC) $(CFLAGS) $(INCLUDES) $(OBJECTS) $(LIBFT) -o $(NAME) $(CFLAGS)
+	@$(CC) $(CFLAGS) $(INCLUDES) $(OBJECTS) $(LIBFT) -o $(NAME) 
 	@echo "$(GREEN)$(NAME) compiled!$(CLEAR)"
 
 asm: $(ASM_FILES)
