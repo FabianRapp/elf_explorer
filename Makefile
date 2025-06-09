@@ -48,7 +48,7 @@ CLEAR	=	\033[0m
 
 all: $(NAME)
 
-$(NAME): $(OBJECTS) $(LIBFT)
+$(NAME): $(LIBFT_DIR) $(OBJECTS) $(LIBFT)
 	@$(CC) $(CFLAGS) $(INCLUDES) $(OBJECTS) $(LIBFT) -o $(NAME) 
 	@echo "$(GREEN)$(NAME) compiled!$(CLEAR)"
 

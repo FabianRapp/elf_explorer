@@ -52,8 +52,8 @@ bool	print_address(t_elf_parser *data, char *line, va_list args) {
 		return (false);
 	}
 
-	count = atoll(split[1]);
-	address = atoll(split[0] + 1);
+	count = strtoul(split[1], NULL, 0);
+	address = strtoul(split[0] + 1, NULL, 0);
 	free_2d_arr(split);
 
 	uint64_t	end = address + count;
